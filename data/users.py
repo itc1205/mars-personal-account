@@ -1,6 +1,6 @@
 from datetime import datetime as dt
+
 import sqlalchemy
-from sqlalchemy import orm
 
 from .db_session import SqlAlchemyBase
 
@@ -20,6 +20,5 @@ class User(SqlAlchemyBase):
     hashed_password = sqlalchemy.Column(sqlalchemy.String)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=dt.now)
 
-
     def __repr__(self):
-        return f'<User with id {self.id}> name={self.name} email={self.email} registration_date={self.registration_date}'
+        return f'<Colonist> {self.id} {self.name} {self.surname}'
