@@ -47,7 +47,6 @@ def index():
         'jobs': [job for job in db_sess.query(Jobs)],
         'users': [user for user in db_sess.query(User)]
     }
-    print(params['jobs'])
     return render_template('index.html', **params)
 
 
