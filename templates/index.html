@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="works-log">Works log</h1>
 {% for job in jobs %}
-<h1>Action #{{loop.index}}</h1>
+<h1>Action #{{job.id}}</h1>
 <table class="table">
   <thead>
     <tr>
