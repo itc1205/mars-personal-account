@@ -39,6 +39,7 @@ def load_user(user_id):
 @app.route('/base')
 @app.route('/index')
 def index():
+    db_session.global_init("db/mars_explorer.sqlite")
     db_sess = db_session.create_session()
     params = {
         'title': 'Лист с профессиями',
@@ -66,6 +67,7 @@ class RegisterForm(FlaskForm):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    db_session.global_init("db/mars_explorer.sqlite")
     form = RegisterForm()
     params = {
         'title': 'Лист с профессиями',
@@ -105,6 +107,7 @@ class LoginForm(FlaskForm):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    db_session.global_init("db/mars_explorer.sqlite")
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
