@@ -26,7 +26,7 @@ def return_links():
     return LIST_OF_TEMPLATES
 
 
-def main():
+def start():
     db_session.global_init("db/mars_explorer.sqlite")
     app.run()
 
