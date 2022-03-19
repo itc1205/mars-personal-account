@@ -12,7 +12,7 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-session.permanent = True
+# session.permanent = True
 login_manager = LoginManager()
 login_manager.init_app(app)
 
