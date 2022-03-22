@@ -36,16 +36,17 @@
                             {% endfor %}
                         </ul>
                     </li>
+
+                </ul>
+                <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+                    {% if current_user.is_authenticated %}
+                    <li><a class="navbar-brand" href="/logout">{{ current_user.name }}</a></li>
+                    {% else %}
+                    <li><a class="btn btn-primary mybtn" href="/register">Зарегистрироваться</a></li>
+                    <li><a class="btn btn-success mybtn" href="/login">Войти</a></li>
+                    {% endif %}
                 </ul>
             </div>
-            {% if current_user.is_authenticated %}
-            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
-            {% else %}
-            <p>
-                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-                <a class="btn btn-success" href="/login">Войти</a>
-            </p>
-            {% endif %}
         </div>
     </nav>
 </header>

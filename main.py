@@ -1,8 +1,9 @@
 from os import listdir
 
-from flask_login import LoginManager, login_user
-from flask import Flask, render_template, session, redirect
+from flask import Flask, render_template, redirect
+from flask_login import LoginManager, login_user, logout_user
 from flask_wtf import FlaskForm
+
 from wtforms import PasswordField, StringField, IntegerField, EmailField, SubmitField, BooleanField
 from wtforms.validators import DataRequired
 
@@ -16,9 +17,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-
-STATIC_PATH = 'static'
-TEMPLATE_PATH = 'templates'
 LIST_OF_TEMPLATES = list(map(lambda x: x.split('.')[0], listdir('templates')))
 
 
@@ -30,10 +28,12 @@ def main():
     db_session.global_init("db/mars_explorer.sqlite")
     app.run()
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
+
 
 @app.route('/')
 @app.route('/base')
@@ -42,7 +42,7 @@ def index():
     db_session.global_init("db/mars_explorer.sqlite")
     db_sess = db_session.create_session()
     params = {
-        'title': 'Лист с профессиями',
+        'title': 'Начальная страница',
         'navbar_title': 'Миссия Колонизация Марса',
         'data': None,
         'hrefs': return_links(),
@@ -70,9 +70,10 @@ def register():
     db_session.global_init("db/mars_explorer.sqlite")
     form = RegisterForm()
     params = {
-        'title': 'Лист с профессиями',
+        'title': 'Регистрация',
         'navbar_title': 'Миссия Колонизация Марса',
-        'form': form
+        'form': form,
+        'hrefs': return_links()
     }
     if form.validate_on_submit():
         if form.password.data != form.repeat_password.data:
@@ -109,6 +110,12 @@ class LoginForm(FlaskForm):
 def login():
     db_session.global_init("db/mars_explorer.sqlite")
     form = LoginForm()
+    params = {
+        'title': 'Авторизация',
+        'navbar_title': 'Миссия Колонизация Марса',
+        'form': form,
+        'hrefs': return_links()
+    }
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
@@ -117,8 +124,14 @@ def login():
             return redirect("/")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
-                               form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+                               **params)
+    return render_template('login.html', **params)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/index')
 
 
 if __name__ == '__main__':
