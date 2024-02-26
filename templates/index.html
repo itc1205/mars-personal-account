@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 <h1 class="works-log">Works log</h1>
-{% for job in jobs %}
-<h1>Action #{{job.id}}</h1>
 <table class="table">
   <thead>
     <tr>
@@ -13,6 +11,7 @@
     </tr>
   </thead>
   <tbody>
+    {% for job in jobs %}
     <tr>
       <td>{{job.job}}</td>
       <td>{{users[job.team_leader - 1].name}} {{users[job.team_leader - 1].surname}}</td>
@@ -24,6 +23,7 @@
       <td class="table-danger">Not finished</td>
       {% endif %}
     </tr>
+    {% endfor %}
   </tbody>
 </table>
-{% endfor %} {% endblock %}
+{% endblock %}
