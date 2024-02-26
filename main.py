@@ -25,7 +25,7 @@ def return_links():
 
 
 def main():
-    db_session.global_init("db/mars_explorer.sqlite")
+    db_session.global_init("./db/mars_explorer.sqlite")
     app.run()
 
 

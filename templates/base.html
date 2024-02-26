@@ -40,7 +40,8 @@
                 </ul>
                 <ul class="navbar-nav me-2 mb-2 mb-lg-0">
                     {% if current_user.is_authenticated %}
-                    <li><a class="navbar-brand" href="/logout">{{ current_user.name }}</a></li>
+                    <li></li>
+                    <li><a class="btn btn-primary" href="/logout">Выйти из акккаунта {{ current_user.name }}</a></li>
                     {% else %}
                     <li><a class="btn btn-primary mybtn" href="/register">Зарегистрироваться</a></li>
                     <li><a class="btn btn-success mybtn" href="/login">Войти</a></li>
