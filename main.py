@@ -8,7 +8,7 @@ from wtforms import PasswordField, StringField, IntegerField, EmailField, Submit
 from wtforms.validators import DataRequired
 
 from data import db_session
-from data.jobs import Jobs
+from data.jobs import Job
 from data.users import User
 
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def index():
         'navbar_title': 'Миссия Колонизация Марса',
         'data': None,
         'hrefs': return_links(),
-        'jobs': [job for job in db_sess.query(Jobs)],
+        'jobs': [job for job in db_sess.query(Job)],
         'users': [user for user in db_sess.query(User)]
     }
     return render_template('index.html', **params)
