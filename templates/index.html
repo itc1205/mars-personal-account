@@ -14,7 +14,7 @@
     {% for job in jobs %}
     <tr>
       <td>{{job.job}}</td>
-      <td>{{users[job.team_leader - 1].name}} {{users[job.team_leader - 1].surname}}</td>
+      <td>{{users[job.leader_id - 1].name}} {{users[job.leader_id - 1].surname}}</td>
       <td>{{job.work_size}} hours</td>
       <td>{{job.collaborators}}</td>
       {% if job.is_finished %}
