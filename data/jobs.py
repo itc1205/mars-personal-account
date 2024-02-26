@@ -11,8 +11,8 @@ class Jobs(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
 
-    team_leader = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
-    user = orm.relation('User')
+    leader_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
+    leader = orm.relation('User')
 
     job = sqlalchemy.Column(sqlalchemy.String)
     work_size = sqlalchemy.Column(sqlalchemy.Integer)
