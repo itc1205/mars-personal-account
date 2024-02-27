@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Авторизация</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <!--Job-->
+    <div class="mb-3">
+        <label for="job">{{ form.job.label }}</label>
+        {{ form.job(class="form-control") }}
+        {% for error in form.job.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--leader_id-->
+    <div class="mb-3">
+        <label for="leader_id">{{ form.leader_id.label }}</label>
+        {{ form.leader_id(class="form-control") }}
+        {% for error in form.leader_id.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--work_size-->
+    <div class="mb-3">
+        <label for="work_size">{{ form.work_size.label }}</label>
+        {{ form.work_size(class="form-control") }}
+        {% for error in form.work_size.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--collaborators-->
+    <div class="mb-3">
+        <label for="collaborators">{{ form.collaborators.label }}</label>
+        {{ form.collaborators(class="form-control") }}
+        {% for error in form.collaborators.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--Job-->
+    <div class="mb-3">
+        <label for="start_date">{{ form.start_date.label }}</label>
+        {{ form.start_date(class="form-control") }}
+        {% for error in form.start_date.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--Job-->
+    <div class="mb-3">
+        <label for="end_date">{{ form.end_date.label }}</label>
+        {{ form.end_date(class="form-control") }}
+        {% for error in form.end_date.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </div>
+    <!--Job-->
+    <div class="mb-3 form-check">
+        {{ form.is_finished.label }}
+        {{ form.is_finished(class="form-check-input") }}
+    </div>
+    {{ form.submit(type="submit", class="btn btn-primary") }}
+    {{ message }}
+</form>
+{% endblock %}
